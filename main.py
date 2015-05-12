@@ -47,4 +47,6 @@ def main():
     a = [2, 1, 3]
     print oxpy.sortListPure(a)
     print a
+
+    # TO DO: binary search next, or fast sort algorithm
 main()

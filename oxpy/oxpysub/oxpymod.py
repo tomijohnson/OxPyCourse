@@ -36,8 +36,8 @@ def getMinRecursive(alist):
     :return: the number with the minimum value
     """
     if len(alist) <= 2:
-        if len(alist) == 1:
-            return alist[0]
+        if len(alist) <= 1:
+            return alist
         elif alist[0] < alist[1]:
             return alist[0]
         else:
@@ -81,8 +81,8 @@ def getMaxRecursive(alist):
     :return max_num: the number with the maximum value
     """
     if len(alist) <= 2:
-        if len(alist) == 1:
-            return alist[0]
+        if len(alist) <= 1:
+            return alist
         elif alist[0] > alist[1]:
             return alist[0]
         else:
