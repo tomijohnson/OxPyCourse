@@ -6,8 +6,8 @@ import ass3
 import ass4
 
 
-def get_data(file="data_ass5.txt"):
-    datafile = open(file, "r")
+def get_data(rfile="data_ass5.txt"):
+    datafile = open(rfile, "r")
     inputstring = datafile.readline()
     datafile.close()
     datatoadd = inputstring.strip().split()
@@ -15,17 +15,17 @@ def get_data(file="data_ass5.txt"):
     for i in range(len(datatoadd)):
         datalist.append(float(datatoadd[i]))
     datalist = ass3.sort_list(datalist)
-    print "Data loaded from " + file
+    print "Data loaded from " + rfile
     return datalist
 
 
-def save_data(datalist, file="data_ass5.txt"):
-    datafile = open(file, "w")
+def save_data(datalist, wfile="data_ass5.txt"):
+    datafile = open(wfile, "w")
     for item in datalist:
         datafile.write(str(item) + " ")
     datafile.write("\n")
     datafile.close()
-    print "Data saved to " + file
+    print "Data saved to " + wfile
 
 
 def print_data(datalist):
@@ -68,7 +68,7 @@ def get_data_searching_prompt_input():
 def data_searching_prompt(datalist, input_func=get_data_searching_prompt_input):
     searchoption = input_func()
     index = ass4.binary_search(datalist, float(searchoption))
-    if index == None:
+    if index is None:
         print "The value was not found"
     else:
         print "The value was found at index", index
@@ -76,11 +76,11 @@ def data_searching_prompt(datalist, input_func=get_data_searching_prompt_input):
 
 def get_main_prompt_input():
     return raw_input("What would you like to do?\n" +
-                       "(1) View the List\n" +
-                       "(2) Add to the list\n" +
-                       "(3) Search the list\n" +
-                       "(4) Save the list\n" +
-                       "(q) Quit the program\n: ")
+                     "(1) View the List\n" +
+                     "(2) Add to the list\n" +
+                     "(3) Search the list\n" +
+                     "(4) Save the list\n" +
+                     "(q) Quit the program\n: ")
 
 
 def main_prompt(datalist, input_func=get_main_prompt_input):

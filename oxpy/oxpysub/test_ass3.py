@@ -12,7 +12,9 @@ class TestSort(unittest.TestCase):
         self.aeexamples.append(([], []))
         self.aeexamples.append(([1], [1]))
         self.aeexamples.append(([0, -1, 9, 34, -45, 8, 12, 3, 9, 21.9], [-45, -1, 0, 3, 8, 9, 9, 12, 21.9, 34]))
-        self.aeexamples.append(([0, -1, 9, 34, -45, 8, 12, 3, 9, 21.9, "string"], [-45, -1, 0, 3, 8, 9, 9, 12, 21.9, 34, "string"]))
+        self.aeexamples.append(([0, -1, 9, 34, -45, 8, 12, 3, 9, 21.9, "string"],
+                                [-45, -1, 0, 3, 8, 9, 9, 12, 21.9, 34,
+                                "string"]))
         self.aeexamples.append(([0, -1, 9, 34, -45, 8, 12, 3, 9, 21.9, []], [-45, -1, 0, 3, 8, 9, 9, 12, 21.9, 34, []]))
 
     def tearDown(self):

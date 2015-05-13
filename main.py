@@ -26,7 +26,7 @@ def assignment3():
     print "\n\n--- Starting Assignment 3 ---"
     alist = [0, -1, 9, 34, -45, 8, 12, 3, 9, 21.9]
     print "List of numbers:", alist
-    print "Sort function returns:", ass3.sort_list(alist), "Expecting", [-45, -1, 0, 3, 8, 9, 9, 12, 21.9, 34]
+    print "Sort function returns:", ass3.sort_list(alist), "Expecting:", [-45, -1, 0, 3, 8, 9, 9, 12, 21.9, 34]
     print "--- Finished Assignment 3 ---"
 
 
@@ -37,8 +37,8 @@ def assignment4():
     alist = [0, -1, 9, 34, -45, 8, 12, 3, 9, 21.9]
     alist = ass3.sort_list(alist)
     print "List of numbers:", alist
-    print "Searching for 12 returns:", ass4.binary_search(alist, 12), "Expecting", 7
-    print "Searching for 9 returns:", ass4.binary_search(alist, 9), "Expecting", 5
+    print "Searching for 12 returns:", ass4.binary_search(alist, 12), "Expecting:", 7
+    print "Searching for 9 returns:", ass4.binary_search(alist, 9), "Expecting:", 5
     print "--- Finished Assignment 4 ---"
 
 

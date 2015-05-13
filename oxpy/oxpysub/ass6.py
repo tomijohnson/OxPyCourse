@@ -5,12 +5,12 @@ __author__ = 'tomi'
 import ass5
 
 
-def load_from_file(file="data_ass6.txt"):
+def load_from_file(rfile="data_ass6.txt"):
     """ Creates a student group based on file, and returns that group
-    :param file: file that has a student group stored
+    :param rfile: file that has a student group stored
     :return studentgroup: the student group created from that file
     """
-    datafile = open(file, "r")
+    datafile = open(rfile, "r")
     linenum = 0
     for line in datafile:
         linenum += 1
@@ -26,7 +26,7 @@ def load_from_file(file="data_ass6.txt"):
             for i in range(3, len(studentdata), 2):
                 student.grades[studentdata[i]] = float(studentdata[i + 1])
     datafile.close()
-    print "Data loaded from " + file
+    print "Data loaded from " + rfile
     return group
 
 
@@ -86,12 +86,14 @@ def get_result_adding_prompt_input2():
     return raw_input("Enter the exams and scores separated by spaces: ")
 
 
-def exam_result_adding_prompt(group, input_func1=get_result_adding_prompt_input1, input_func2=get_result_adding_prompt_input2):
+def exam_result_adding_prompt(group,
+                              input_func1=get_result_adding_prompt_input1,
+                              input_func2=get_result_adding_prompt_input2):
     idy = input_func1()
     student = group.find_student_by_id(idy)[0]
     inputstring = input_func2()
     datatoadd = inputstring.split()
-    for i in range(0,len(datatoadd),2):
+    for i in range(0, len(datatoadd), 2):
         student.update_grades({datatoadd[i]: float(datatoadd[i + 1])})
     print "Exam(s) added. The student's data is now:"
     print student
@@ -99,12 +101,12 @@ def exam_result_adding_prompt(group, input_func1=get_result_adding_prompt_input1
 
 def get_main_prompt_input():
     return raw_input("What would you like to do?\n" +
-                       "(1) View the group\n" +
-                       "(2) Add a student\n" +
-                       "(3) Find a student\n" +
-                       "(4) Add an exam result\n" +
-                       "(5) Save the list\n" +
-                       "(q) Quit the program\n: ")
+                     "(1) View the group\n" +
+                     "(2) Add a student\n" +
+                     "(3) Find a student\n" +
+                     "(4) Add an exam result\n" +
+                     "(5) Save the list\n" +
+                     "(q) Quit the program\n: ")
 
 
 def main_prompt(group, input_func=get_main_prompt_input):
@@ -245,13 +247,13 @@ class StudentGroup:
         self.maxidy += 1
         return student
 
-    def save_to_file(self, file="data_ass6.txt"):
-        datafile = open(file, "w")
+    def save_to_file(self, wfile="data_ass6.txt"):
+        datafile = open(wfile, "w")
         datafile.write(self.print_simple())
         for student in self.studentlist:
             datafile.write("\n" + student.print_simple())
         datafile.close()
-        print "Data saved to " + file
+        print "Data saved to " + wfile
 
     def find_student_by_id(self, idy):
         found = False
