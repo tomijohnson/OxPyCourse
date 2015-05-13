@@ -1,0 +1,4 @@
+Test_group 2
+0 Tomi True python 30.0 physics 80.0 french 0.0
+1 Jess True teaching 35.0 physics 70.0 french 90.0
+2 Dave True davish 99.0
