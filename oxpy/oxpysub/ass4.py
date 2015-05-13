@@ -8,7 +8,7 @@ def linear_search_iterative(alist, target):
     :param target: a target number
     :return index: the index at which target appears in alist, or -1 if it does not appear
     """
-    index_target = -1
+    index_target = None
     found = False
     index_current = 0
     while index_current < len(alist) and found is False:
@@ -35,7 +35,7 @@ def binary_search_iterative(alist, target):
     :param target: a target number
     :return index: the index at which target appears in alist, or -1 if it does not appear
     """
-    index_target = -1
+    index_target = None
     found = False
     start = 0
     end = len(alist)
@@ -68,7 +68,7 @@ def binary_search_recursive(alist, target, start=0, end=-1):
         if range_len == 1 and alist[start] == target:
             return start
         else:
-            return -1
+            return None
     else:
         if alist[start + range_len//2 - 1] < target:
             return binary_search_recursive(alist, target, start + range_len//2, end)

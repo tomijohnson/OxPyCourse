@@ -1,4 +1,5 @@
-Test_group 2
+Test_group 3
 0 Tomi True python 30.0 physics 80.0 french 0.0
 1 Jess True teaching 35.0 physics 70.0 french 90.0
 2 Dave True davish 99.0
+3 Sally True python 87.0 french 35.9 history 45.0

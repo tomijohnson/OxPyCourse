@@ -5,35 +5,27 @@ __author__ = 'tomi'
 import ass3
 import ass4
 
-def get_data():
-    # open the file
-    datafile = open("data.txt", "r")
-    # read the first line the file must be sorted and separated by a space
+
+def get_data(file="data_ass5.txt"):
+    datafile = open(file, "r")
     inputstring = datafile.readline()
-    # close the file
     datafile.close()
-    # remove the new line character
-    inputstring.strip()
-    # split the data into a list
-    datatoadd = inputstring.split()
+    datatoadd = inputstring.strip().split()
     datalist = []
     for i in range(len(datatoadd)):
         datalist.append(float(datatoadd[i]))
     datalist = ass3.sort_list(datalist)
-    print "Data loaded from data.txt"
+    print "Data loaded from " + file
     return datalist
 
 
-def save_data(datalist):
-    # open the file
-    datafile = open("data.txt", "w")
-    # write list all one line separated by spaces
+def save_data(datalist, file="data_ass5.txt"):
+    datafile = open(file, "w")
     for item in datalist:
         datafile.write(str(item) + " ")
     datafile.write("\n")
-    # close the file
     datafile.close()
-    print "Data saved to data.txt"
+    print "Data saved to " + file
 
 
 def print_data(datalist):
@@ -41,10 +33,12 @@ def print_data(datalist):
     print datalist
 
 
-def data_loading_prompt():
-    option = str(input("Would you like to load your previous data (y/n):"))
-    # strip the new line character and any extraneous white space
-    option = option.strip()
+def get_data_loading_prompt_input():
+    return raw_input("Would you like to load your previous data (y or Y for yes, otherwise no): ")
+
+
+def data_loading_prompt(input_func=get_data_loading_prompt_input):
+    option = input_func()
     if option == "y" or option == "Y":
         datalist = get_data()
     else:
@@ -52,12 +46,12 @@ def data_loading_prompt():
     return datalist
 
 
-def data_adding_prompt(datalist):
-    # get input
-    inputstring = str(input("Please enter new values separated by spaces:"))
-    # remove new line character
-    inputstring.strip()
-    # split the string
+def get_data_adding_prompt_input():
+    return raw_input("Please enter new values separated by spaces: ")
+
+
+def data_adding_prompt(datalist, input_func=get_data_adding_prompt_input):
+    inputstring = input_func()
     datatoadd = inputstring.split()
     for i in range(len(datatoadd)):
         datalist.append(float(datatoadd[i]))
@@ -67,28 +61,31 @@ def data_adding_prompt(datalist):
     return datalist
 
 
-def data_searching_prompt(datalist):
-    # get input
-    searchoption = str(input("What would you like to find?"))
-    # remove new line character
-    searchoption.strip()
-    # sort and search
+def get_data_searching_prompt_input():
+    return raw_input("What would you like to find? ")
+
+
+def data_searching_prompt(datalist, input_func=get_data_searching_prompt_input):
+    searchoption = input_func()
     index = ass4.binary_search(datalist, float(searchoption))
-    if index > -1:
-        print("The value was found at index", index)
+    if index == None:
+        print "The value was not found"
     else:
-        print("The value was not found")
+        print "The value was found at index", index
 
 
-def main_prompt(datalist):
-    option = str(input("What would you like to do?\n" +
+def get_main_prompt_input():
+    return raw_input("What would you like to do?\n" +
                        "(1) View the List\n" +
                        "(2) Add to the list\n" +
                        "(3) Search the list\n" +
                        "(4) Save the list\n" +
-                       "(q) Quit the program"))
-    option = option.strip()
+                       "(q) Quit the program\n: ")
 
+
+def main_prompt(datalist, input_func=get_main_prompt_input):
+    option = input_func()
+    option = option.strip()
     if option == "1":
         print_data(datalist)
         return datalist

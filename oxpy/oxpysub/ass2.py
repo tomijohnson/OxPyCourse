@@ -23,11 +23,14 @@ def get_min_iterative(alist):
     :param alist: a list of numbers
     :return min_num: the number with the minimum value
     """
-    min_num = alist[0]
-    for i in range(1, len(alist)):
-        if alist[i] < min_num:
-            min_num = alist[i]
-    return min_num
+    if len(alist) == 0:
+        return None
+    else:
+        min_num = alist[0]
+        for i in range(1, len(alist)):
+            if alist[i] < min_num:
+                min_num = alist[i]
+        return min_num
 
 
 def get_min_recursive(alist):
@@ -37,7 +40,10 @@ def get_min_recursive(alist):
     """
     if len(alist) <= 2:
         if len(alist) <= 1:
-            return alist
+            if len(alist) == 1:
+                return alist[0]
+            else:
+                return None
         elif alist[0] < alist[1]:
             return alist[0]
         else:
@@ -71,11 +77,14 @@ def get_max_iterative(alist):
     :param alist: a list of numbers
     :return max_num: the number with the maximum value
     """
-    max_num = alist[0]
-    for i in range(1, len(alist)):
-        if alist[i] > max_num:
-            max_num = alist[i]
-    return max_num
+    if len(alist) == 0:
+        return None
+    else:
+        max_num = alist[0]
+        for i in range(1, len(alist)):
+            if alist[i] > max_num:
+                max_num = alist[i]
+        return max_num
 
 
 def get_max_recursive(alist):
@@ -85,7 +94,10 @@ def get_max_recursive(alist):
     """
     if len(alist) <= 2:
         if len(alist) <= 1:
-            return alist
+            if len(alist) == 1:
+                return alist[0]
+            else:
+                return None
         elif alist[0] > alist[1]:
             return alist[0]
         else:

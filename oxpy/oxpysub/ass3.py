@@ -2,29 +2,6 @@
 __author__ = 'tomi'
 
 
-def sort_list(alist, ftype="modifier"):
-    """ A function that sorts a list
-    :param alist: a list of numbers
-    :param ftype: the type of function
-    :return None:
-    """
-    if ftype == "modifier":
-        return sort_list_modifier(alist)
-    elif ftype == "pure":
-        return sort_list_pure(alist)
-    else:
-        print "In sortList,type", ftype, "not recognised. Using modifier..."
-        return sort_list_modifier(alist)
-
-
-def sort_list_modifier(alist):
-    """ A modifier function that sorts a list
-    :param alist: a list of numbers
-    :return: the same list of numbers, but sorted
-    """
-    return bubble_sort(alist)
-
-
 def bubble_sort(alist):
     """ A modifier function that sorts a list, using the bubble method
     :param alist: a list of numbers
@@ -47,6 +24,29 @@ def bubble_sort_iterative(alist):
                 new_n = i
         n = new_n
     return alist
+
+
+def sort_list(alist, ftype="modifier"):
+    """ A function that sorts a list
+    :param alist: a list of numbers
+    :param ftype: the type of function
+    :return None:
+    """
+    if ftype == "modifier":
+        return sort_list_modifier(alist)
+    elif ftype == "pure":
+        return sort_list_pure(alist)
+    else:
+        print "In sortList,type", ftype, "not recognised. Using modifier..."
+        return sort_list_modifier(alist)
+
+
+def sort_list_modifier(alist):
+    """ A modifier function that sorts a list
+    :param alist: a list of numbers
+    :return: the same list of numbers, but sorted
+    """
+    return bubble_sort(alist)
 
 
 def sort_list_pure(alist):

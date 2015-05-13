@@ -2,11 +2,10 @@
 __author__ = 'tomi'
 
 # Imports
-import ass3
-import ass4
+import ass5
 
 
-def load_from_file(file="data2.txt"):
+def load_from_file(file="data_ass6.txt"):
     """ Creates a student group based on file, and returns that group
     :param file: file that has a student group stored
     :return studentgroup: the student group created from that file
@@ -31,15 +30,6 @@ def load_from_file(file="data2.txt"):
     return group
 
 
-def make_safe(name):
-    """ Takes a string and removes the spaces, replacing them with underscores
-    :param name:
-    :return name:
-    """
-    "_".join(name.split())
-    return name
-
-
 def save_data(group):
     group.save_to_file()
 
@@ -48,31 +38,39 @@ def print_data(group):
     print group
 
 
-def data_loading_prompt():
-    option = str(input("Would you like to load your previous student group (y/n):"))
-    option = option.strip()
+def get_group_adding_prompt_input():
+    return raw_input("Enter the name of the new group: ")
+
+
+def data_loading_prompt(input_func1=ass5.get_data_loading_prompt_input, input_func2=get_group_adding_prompt_input):
+    option = input_func1()
     if option == "y" or option == "Y":
         group = load_from_file()
     else:
-        name = str(input("Enter the name of the new group:"))
-        name = make_safe(name.strip())
+        name = input_func2()
         group = StudentGroup(name)
     return group
 
 
-def student_adding_prompt(group):
-    name = str(input("Please enter new student name:"))
-    name = make_safe(name).strip()
+def get_student_adding_prompt_input():
+    return raw_input("Please enter new student name: ")
+
+
+def student_adding_prompt(group, input_func=get_student_adding_prompt_input):
+    name = input_func()
     group.add_student(name)
     print "Student added. Group is now:"
     print group
 
 
-def data_searching_prompt(group):
-    searchoption = str(input("Enter the name of the student you want to find:"))
-    searchoption.strip()
+def get_student_searching_prompt_input():
+    return raw_input("Enter the name of the student you want to find: ")
+
+
+def data_searching_prompt(group, input_func=get_student_searching_prompt_input):
+    searchoption = input_func()
     students = group.find_student_by_name(searchoption)
-    if students == None:
+    if students is None:
         print "There is no student by that name."
     else:
         print str(len(students)) + " student(s) was(were) found by that name."
@@ -80,12 +78,18 @@ def data_searching_prompt(group):
             print student
 
 
-def exam_result_adding_prompt(group):
-    idy = str(input("Enter the student's ID:"))
-    idy = int(idy.strip())
+def get_result_adding_prompt_input1():
+    return int(raw_input("Enter the student's ID: "))
+
+
+def get_result_adding_prompt_input2():
+    return raw_input("Enter the exams and scores separated by spaces: ")
+
+
+def exam_result_adding_prompt(group, input_func1=get_result_adding_prompt_input1, input_func2=get_result_adding_prompt_input2):
+    idy = input_func1()
     student = group.find_student_by_id(idy)[0]
-    inputstring = input("Enter the exams and scores separated by spaces:")
-    inputstring.strip()
+    inputstring = input_func2()
     datatoadd = inputstring.split()
     for i in range(0,len(datatoadd),2):
         student.update_grades({datatoadd[i]: float(datatoadd[i + 1])})
@@ -93,16 +97,18 @@ def exam_result_adding_prompt(group):
     print student
 
 
-def main_prompt(group):
-    option = str(input("What would you like to do?\n" +
+def get_main_prompt_input():
+    return raw_input("What would you like to do?\n" +
                        "(1) View the group\n" +
                        "(2) Add a student\n" +
-                       "(3) Search for a student\n" +
+                       "(3) Find a student\n" +
                        "(4) Add an exam result\n" +
-                       "(5) Save the group\n" +
-                       "(q) Quit the program"))
-    option = option.strip()
+                       "(5) Save the list\n" +
+                       "(q) Quit the program\n: ")
 
+
+def main_prompt(group, input_func=get_main_prompt_input):
+    option = input_func()
     if option == "1":
         print_data(group)
         return None
@@ -239,7 +245,7 @@ class StudentGroup:
         self.maxidy += 1
         return student
 
-    def save_to_file(self, file="data2.txt"):
+    def save_to_file(self, file="data_ass6.txt"):
         datafile = open(file, "w")
         datafile.write(self.print_simple())
         for student in self.studentlist:
